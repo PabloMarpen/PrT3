@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">PrT3</string>
+    <string-array name="paises">
+        <item></item>
+        <item>España</item>
+        <item>Alemania</item>
+        <item>Italia</item>
+        <item>Grecia</item>
+        <item>Belgica</item>
+        <item>Estados Unidos</item>
+        <item>Palencia</item>
+        <item>China</item>
+        <item>Congo</item>
+    </string-array>
 </resources>
