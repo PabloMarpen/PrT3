@@ -2,21 +2,25 @@ package com.example.prt3
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-
-import android.widget.RadioButton
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.EditText
-import android.widget.RadioGroup
 import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.SeekBar
+import android.widget.Spinner
 import android.widget.Switch
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.isDigitsOnly
+
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var boton: Button
@@ -40,7 +44,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var suscripcionString = "No"
     private val checkBoxHobbieString = arrayOf("Lectura", "Deporte", "Musica", "Arte")
     private val checkBoxHobbieBoolean = arrayOf(false, false, false, false)
-    private var nivelSatifaccion: Int? = null
+    private var nivelSatifaccion = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +65,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     @SuppressLint("NewApi")
     private fun listener(pais: String) {
 
+        val duration = Toast.LENGTH_SHORT
         boton = findViewById<Button>(R.id.button)
         resultado = findViewById<TextView>(R.id.textViewResultado)
         nombre = findViewById<EditText>(R.id.editTextNombre)
@@ -81,6 +86,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         suscripcion = findViewById<Switch>(R.id.switch1)
         barra.min = 0
         barra.max = 10
+
 
         barra.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
@@ -139,10 +145,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
          boton.setOnClickListener {
-            var hobbies = ""
+            var hobbies  = ""
             val nombreS = nombre.text
             val apellidoS = apellido.text
-            val emailS = email.text
+            val emailS  = email.text
+
+
 
             var genero = when (radioGroup.checkedRadioButtonId) {
                 hombre.id -> "Hombre"
@@ -151,7 +159,15 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 else -> ""
             }
              if (pais == "" || genero == "" || emailS.toString() == "" || nombreS.toString() == ""|| apellidoS.toString() == ""){
-                 resultado.text = "Porfavor use todos los campos"
+                 Toast.makeText(this, "Usa todos los campos ⚠⚠", duration).show() // in Activity
+
+             }else if( nombreS.isDigitsOnly() || apellidoS.isDigitsOnly()){
+                 Toast.makeText(this, "No metas numeros 😡😡", duration).show() // in Activity
+
+             }else if (!isValidEmail(emailS)){
+
+               Toast.makeText(this, "Por favor, introduce bien su email 😡😡",duration ).show()
+
              }else{
 
                  for (i in checkBoxHobbieBoolean.indices){
@@ -160,8 +176,19 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                          hobbies += ", "
                      }
                 }
+                 if (hobbies == ""){
+                     hobbies = "No hay hobbies"
+                 }
                  resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais\nHobbies: $hobbies\nSatisfaccion: $nivelSatifaccion\nSuscripción: $suscripcionString"
              }
+        }
+    }
+
+    fun isValidEmail(target: CharSequence?): Boolean {
+        return if (TextUtils.isEmpty(target)) {
+            false
+        } else {
+            Patterns.EMAIL_ADDRESS.matcher(target).matches()
         }
     }
 
