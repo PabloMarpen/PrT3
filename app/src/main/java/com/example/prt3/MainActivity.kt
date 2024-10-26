@@ -30,7 +30,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var deporte : CheckBox
     private lateinit var musica : CheckBox
     private lateinit var arte : CheckBox
-    var checkBoxString = ""
+    private val checkBoxHobbieString = arrayOf("Lectura", "Deporte", "Musica", "Arte")
+    private val checkBoxHobbieBoolean = arrayOf(false, false, false, false)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -61,33 +64,42 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
          mujer = findViewById<RadioButton>(R.id.radioButtonFemenino)
          otro = findViewById<RadioButton>(R.id.radioButtonOtro)
          lectura = findViewById<CheckBox>(R.id.checkBoxLectura)
-         deporte = findViewById<CheckBox>(R.id.checkBoxLectura)
-         musica = findViewById<CheckBox>(R.id.checkBoxLectura)
-         arte = findViewById<CheckBox>(R.id.checkBoxLectura)
+         deporte = findViewById<CheckBox>(R.id.checkBoxDeporte)
+         musica = findViewById<CheckBox>(R.id.checkBoxMusica)
+         arte = findViewById<CheckBox>(R.id.checkBoxArte)
 
         lectura.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                checkBoxString = "Lectura"
+                checkBoxHobbieBoolean[0] = true
+            }else{
+                checkBoxHobbieBoolean[0] = false
             }
+
         }
         deporte.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                checkBoxString = checkBoxString + "deporte"
+                checkBoxHobbieBoolean[1] = true
+            }else{
+                checkBoxHobbieBoolean[1] = false
             }
         }
         musica.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                checkBoxString = checkBoxString + "musica"
+                checkBoxHobbieBoolean[2] = true
+            }else{
+                checkBoxHobbieBoolean[2] = false
             }
         }
         arte.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                checkBoxString = checkBoxString + "arte"
+                checkBoxHobbieBoolean[3] = true
+            }else{
+                checkBoxHobbieBoolean[3] = false
             }
         }
 
          boton.setOnClickListener {
-
+            var hobbies = ""
             val nombreS = nombre.text
             val apellidoS = apellido.text
             val emailS = email.text
@@ -98,7 +110,19 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 otro.id -> "Otro"
                 else -> ""
             }
-            resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais $checkBoxString"
+             if (pais == "" || genero == "" || emailS.toString() == "" || nombreS.toString() == ""|| apellidoS.toString() == ""){
+                 resultado.text = "Porfavor use todos los campos"
+             }else{
+             for (i in checkBoxHobbieBoolean.indices){
+                 if (checkBoxHobbieBoolean[i]){
+                     hobbies += checkBoxHobbieString[i]
+                     hobbies += ", "
+                 }
+
+
+            }
+                 resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais\nHobbies: $hobbies"
+             }
         }
     }
 
