@@ -1,5 +1,6 @@
 package com.example.prt3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,8 @@ import android.widget.TextView
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.CheckBox
+import android.widget.SeekBar
+import android.widget.Switch
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var boton: Button
@@ -30,9 +33,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var deporte : CheckBox
     private lateinit var musica : CheckBox
     private lateinit var arte : CheckBox
+    private lateinit var barra : SeekBar
+    private lateinit var textViewNivel : TextView
+    private lateinit var suscripcion : Switch
+    private var suscripcionBoolean = false
+    private var suscripcionString = "No"
     private val checkBoxHobbieString = arrayOf("Lectura", "Deporte", "Musica", "Arte")
     private val checkBoxHobbieBoolean = arrayOf(false, false, false, false)
-
+    private var nivelSatifaccion: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,23 +58,55 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
        listener("")
     }
 
+    @SuppressLint("NewApi")
     private fun listener(pais: String) {
 
-         boton = findViewById<Button>(R.id.button)
-         resultado = findViewById<TextView>(R.id.textViewResultado)
-         nombre = findViewById<EditText>(R.id.editTextNombre)
-         apellido = findViewById<EditText>(R.id.editTextApellido)
-         email = findViewById<EditText>(R.id.editTextMail)
+        boton = findViewById<Button>(R.id.button)
+        resultado = findViewById<TextView>(R.id.textViewResultado)
+        nombre = findViewById<EditText>(R.id.editTextNombre)
+        apellido = findViewById<EditText>(R.id.editTextApellido)
+        email = findViewById<EditText>(R.id.editTextMail)
 
-         radioGroup = findViewById<RadioGroup>(R.id.radioGroup2)
+        radioGroup = findViewById<RadioGroup>(R.id.radioGroup2)
 
-         hombre = findViewById<RadioButton>(R.id.radioButtonMasculino)
-         mujer = findViewById<RadioButton>(R.id.radioButtonFemenino)
-         otro = findViewById<RadioButton>(R.id.radioButtonOtro)
-         lectura = findViewById<CheckBox>(R.id.checkBoxLectura)
-         deporte = findViewById<CheckBox>(R.id.checkBoxDeporte)
-         musica = findViewById<CheckBox>(R.id.checkBoxMusica)
-         arte = findViewById<CheckBox>(R.id.checkBoxArte)
+        hombre = findViewById<RadioButton>(R.id.radioButtonMasculino)
+        mujer = findViewById<RadioButton>(R.id.radioButtonFemenino)
+        otro = findViewById<RadioButton>(R.id.radioButtonOtro)
+        lectura = findViewById<CheckBox>(R.id.checkBoxLectura)
+        deporte = findViewById<CheckBox>(R.id.checkBoxDeporte)
+        musica = findViewById<CheckBox>(R.id.checkBoxMusica)
+        arte = findViewById<CheckBox>(R.id.checkBoxArte)
+        barra = findViewById<SeekBar>(R.id.seekBarNivel)
+        textViewNivel = findViewById<TextView>(R.id.textViewNivel)
+        suscripcion = findViewById<Switch>(R.id.switch1)
+        barra.min = 0
+        barra.max = 10
+
+        barra.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                textViewNivel.text = "Nivel de satisfacción: $progress"
+                nivelSatifaccion = progress
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // No se necesita implementación en este caso
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // No se necesita implementación en este caso
+            }
+        })
+
+        suscripcion.setOnCheckedChangeListener {_, isChecked ->
+            if (isChecked) {
+                suscripcionBoolean = true
+                suscripcionString = "Si"
+            }else{
+                suscripcionBoolean = false
+                suscripcionString = "No"
+            }
+        }
 
         lectura.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -113,15 +153,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
              if (pais == "" || genero == "" || emailS.toString() == "" || nombreS.toString() == ""|| apellidoS.toString() == ""){
                  resultado.text = "Porfavor use todos los campos"
              }else{
-             for (i in checkBoxHobbieBoolean.indices){
-                 if (checkBoxHobbieBoolean[i]){
-                     hobbies += checkBoxHobbieString[i]
-                     hobbies += ", "
-                 }
 
-
-            }
-                 resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais\nHobbies: $hobbies"
+                 for (i in checkBoxHobbieBoolean.indices){
+                     if (checkBoxHobbieBoolean[i]){
+                         hobbies += checkBoxHobbieString[i]
+                         hobbies += ", "
+                     }
+                }
+                 resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais\nHobbies: $hobbies\nSatisfaccion: $nivelSatifaccion\nSuscripción: $suscripcionString"
              }
         }
     }
