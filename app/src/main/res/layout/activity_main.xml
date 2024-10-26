@@ -58,21 +58,19 @@
             android:layout_marginTop="40dp"
             android:ems="10"
             android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.737"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
+            app:layout_constraintStart_toStartOf="@+id/editTextNombre"
             app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
 
         <EditText
             android:id="@+id/editTextMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="52dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.737"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextApellido"
+            app:layout_constraintStart_toStartOf="@+id/editTextApellido"
             app:layout_constraintTop_toBottomOf="@+id/editTextApellido" />
 
         <TextView
@@ -81,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:text="Email"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/editTextMail"
             app:layout_constraintHorizontal_bias="0.464"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
             android:text="Apellido"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/editTextApellido"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
@@ -102,6 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Nombre"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/editTextNombre"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/editTextNombre" />
@@ -112,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Genero"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextMail" />
@@ -154,6 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Pais"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
             app:layout_constraintStart_toStartOf="@+id/radioGroup2"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
@@ -174,6 +177,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="24dp"
             android:text="Hobbie"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/checkBoxLectura"
             app:layout_constraintEnd_toEndOf="@+id/spinnerPais"
             app:layout_constraintHorizontal_bias="0.525"
@@ -232,6 +236,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="Satisfacción"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/checkBoxArte"
             app:layout_constraintStart_toStartOf="@+id/checkBoxArte"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxArte" />
@@ -254,6 +259,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="12dp"
             android:text="0"
+
             app:layout_constraintEnd_toStartOf="@+id/seekBarNivel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -266,6 +272,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="20dp"
             android:text="10"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/seekBarNivel"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -276,6 +283,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Nivel de satisfaccion"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/textView7"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/seekBarNivel" />
@@ -286,6 +294,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Suscripción al Boletín"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/textViewNivel"
             app:layout_constraintStart_toStartOf="@+id/textViewNivel"
             app:layout_constraintTop_toBottomOf="@+id/textViewNivel" />
@@ -294,22 +303,26 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="40dp"
             android:backgroundTint="#D92E2E"
             android:text="Enviar"
+            android:textSize="20sp"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textViewResultado"
+            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="@+id/textViewResultado"
-            app:layout_constraintTop_toBottomOf="@+id/textViewResultado" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewResultado"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textViewResultado"
-            android:layout_width="320dp"
-            android:layout_height="291dp"
+            android:layout_width="330dp"
+            android:layout_height="197dp"
             android:layout_marginTop="28dp"
             android:text="Resultado a enviar:"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@+id/switch1"
             app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="@+id/switch1"
