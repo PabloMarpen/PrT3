@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         spinner.onItemSelectedListener = this
 
+
        listener("")
     }
 
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         boton = findViewById<Button>(R.id.button)
         resultado = findViewById<TextView>(R.id.textViewResultado)
         nombre = findViewById<EditText>(R.id.editTextNombre)
+        nombre.requestFocus()
         apellido = findViewById<EditText>(R.id.editTextApellido)
         email = findViewById<EditText>(R.id.editTextMail)
 
@@ -166,7 +168,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
              }else if (!isValidEmail(emailS)){
 
-               Toast.makeText(this, "Por favor, introduce bien su email 😡😡",duration ).show()
+               Toast.makeText(this, "Por favor, introduzca bien su email 😡😡",duration ).show()
 
              }else{
 
@@ -179,6 +181,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                  if (hobbies == ""){
                      hobbies = "No hay hobbies"
                  }
+
                  resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais\nHobbies: $hobbies\nSatisfaccion: $nivelSatifaccion\nSuscripción: $suscripcionString"
              }
         }
@@ -190,6 +193,16 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         } else {
             Patterns.EMAIL_ADDRESS.matcher(target).matches()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("Resultado", resultado.text.toString());
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        resultado.text = savedInstanceState.getString("Resultado")
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
