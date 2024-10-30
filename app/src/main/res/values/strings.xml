@@ -12,4 +12,23 @@
         <item>China</item>
         <item>Congo</item>
     </string-array>
+    <string name="titulo">Mi perfil personal</string>
+    <string name="Nombre">Nombre</string>
+    <string name="Apellido">Apellido</string>
+    <string name="Email">Email</string>
+    <string name="Genero">Genero</string>
+    <string name="Femenino">Femenino</string>
+    <string name="Masculino">Masculino</string>
+    <string name="Otro">Otro</string>
+    <string name="Pais">Pais</string>
+    <string name="Hobbie">Hobbie</string>
+    <string name="Lectura">Lectura</string>
+    <string name="Deporte">Deporte</string>
+    <string name="Musica">Musica</string>
+    <string name="Arte">Arte</string>
+    <string name="Satisfacción">Satisfacción</string>
+    <string name="Nivel">Nivel de satisfacción</string>
+    <string name="Suscripción">Suscripción al boletín</string>
+    <string name="Resultado">Resultado a envíar:</string>
+    <string name="boton">Enviar</string>
 </resources>
