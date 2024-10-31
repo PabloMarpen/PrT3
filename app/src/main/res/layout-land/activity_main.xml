@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- he metido toda la vista principal dentro de un ScrollView para que se pueda desplegar hacia abajo, fuente https://www.youtube.com/watch?v=h6g4NpiC0i4&t=234s-->
 <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,13 +19,13 @@
 
         <TextView
             android:id="@+id/TextoSuperior"
-            android:layout_width="263dp"
-            android:layout_height="57dp"
+            android:layout_width="387dp"
+            android:layout_height="106dp"
             android:layout_marginTop="52dp"
+            android:fontFamily="@font/signikanegativebold"
             android:text="@string/titulo"
             android:textColor="#967EC6"
-            android:fontFamily="@font/signikanegativebold"
-            android:textSize="30dp"
+            android:textSize="45dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.331"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,22 +33,22 @@
 
         <ImageView
             android:id="@+id/fotoSuperior"
-            android:layout_width="77dp"
-            android:layout_height="62dp"
+            android:layout_width="130dp"
+            android:layout_height="120dp"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon" />
 
         <EditText
             android:id="@+id/editTextNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="353dp"
+            android:layout_height="43dp"
             android:layout_marginTop="76dp"
             android:ems="10"
-            android:inputType="text"
             android:fontFamily="@font/signikanegativemedium"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.732"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,24 +56,24 @@
 
         <EditText
             android:id="@+id/editTextApellido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="358dp"
+            android:layout_height="44dp"
             android:layout_marginTop="40dp"
             android:ems="10"
-            android:inputType="text"
             android:fontFamily="@font/signikanegativemedium"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
             app:layout_constraintStart_toStartOf="@+id/editTextNombre"
             app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
 
         <EditText
             android:id="@+id/editTextMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="362dp"
+            android:layout_height="43dp"
             android:layout_marginTop="52dp"
             android:ems="10"
-            android:inputType="textEmailAddress"
             android:fontFamily="@font/signikanegativemedium"
+            android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="@+id/editTextApellido"
             app:layout_constraintStart_toStartOf="@+id/editTextApellido"
             app:layout_constraintTop_toBottomOf="@+id/editTextApellido" />
@@ -135,8 +134,8 @@
 
         <RadioGroup
             android:id="@+id/radioGroup2"
-            android:layout_width="129dp"
-            android:layout_height="167dp"
+            android:layout_width="132dp"
+            android:layout_height="171dp"
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="@+id/textViewGenero"
             app:layout_constraintStart_toStartOf="@+id/textViewGenero"
@@ -147,24 +146,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
-                android:text="@string/Femenino"
-                android:fontFamily="@font/signikanegativemedium"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/signikanegativemedium"
+                android:text="@string/Femenino" />
 
             <RadioButton
                 android:id="@+id/radioButtonMasculino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="@string/Masculino"
-                android:fontFamily="@font/signikanegativemedium"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/signikanegativemedium"
+                android:text="@string/Masculino" />
 
             <RadioButton
                 android:id="@+id/radioButtonOtro"
                 android:layout_width="match_parent"
                 android:layout_height="59dp"
                 android:layout_marginTop="1dp"
-                android:text="@string/Otro"
-                android:fontFamily="@font/signikanegativemedium"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/signikanegativemedium"
+                android:text="@string/Otro" />
 
         </RadioGroup>
 
@@ -183,13 +185,12 @@
 
         <Spinner
             android:id="@+id/spinnerPais"
-            android:layout_width="258dp"
-            android:layout_height="48dp"
+            android:layout_width="533dp"
+            android:layout_height="58dp"
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPais"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPais" />
 
         <TextView
             android:id="@+id/textViewHobbie"
@@ -213,6 +214,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="12dp"
+            android:textSize="20sp"
             android:text="@string/Lectura"
             android:fontFamily="@font/signikanegativemedium"
             app:layout_constraintBottom_toTopOf="@+id/checkBoxDeporte"
@@ -226,6 +228,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:textSize="20sp"
             android:text="@string/Musica"
             android:fontFamily="@font/signikanegativemedium"
             app:layout_constraintEnd_toEndOf="@+id/checkBoxDeporte"
@@ -238,6 +241,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:textSize="20sp"
             android:text="@string/Arte"
             android:fontFamily="@font/signikanegativemedium"
             app:layout_constraintEnd_toEndOf="@+id/checkBoxMusica"
@@ -250,6 +254,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:textSize="20sp"
             android:text="@string/Deporte"
             android:fontFamily="@font/signikanegativemedium"
             app:layout_constraintEnd_toEndOf="@+id/checkBoxLectura"
@@ -262,18 +267,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="@string/Satisfacción"
             android:fontFamily="@font/signikanegativebold"
+            android:text="@string/Satisfacción"
             android:textColor="#967EC6"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/checkBoxArte"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/checkBoxArte"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxArte" />
 
         <SeekBar
             android:id="@+id/seekBarNivel"
-            android:layout_width="238dp"
-            android:layout_height="26dp"
+            android:layout_width="450dp"
+            android:layout_height="29dp"
             android:layout_marginTop="28dp"
             android:thumb="@android:drawable/ic_input_add"
             app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -289,6 +295,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="12dp"
             android:text="0"
+            android:textSize="20sp"
             android:fontFamily="@font/signikanegativemedium"
 
             app:layout_constraintEnd_toStartOf="@+id/seekBarNivel"
@@ -302,6 +309,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="20dp"
+            android:textSize="20sp"
             android:text="10"
             android:fontFamily="@font/signikanegativemedium"
 
@@ -336,15 +344,15 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="249dp"
+            android:layout_height="49dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="40dp"
             android:backgroundTint="#967EC6"
-            android:text="@string/boton"
             android:fontFamily="@font/signikanegativebold"
-            android:textSize="20sp"
+            android:text="@string/boton"
             android:textColor="#FFFFFF"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textViewResultado"
             app:layout_constraintHorizontal_bias="0.508"
@@ -354,12 +362,12 @@
 
         <TextView
             android:id="@+id/textViewResultado"
-            android:layout_width="330dp"
-            android:layout_height="197dp"
+            android:layout_width="593dp"
+            android:layout_height="202dp"
             android:layout_marginTop="28dp"
+            android:fontFamily="@font/signikanegativebold"
             android:text="@string/Resultado"
             android:textAlignment="center"
-            android:fontFamily="@font/signikanegativebold"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@+id/switch1"
             app:layout_constraintHorizontal_bias="0.478"

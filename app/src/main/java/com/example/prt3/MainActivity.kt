@@ -2,6 +2,7 @@ package com.example.prt3
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
@@ -51,21 +52,23 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-       spinner = findViewById<Spinner>(R.id.spinnerPais)
 
+        // Configura el Spinner con un ArrayAdapter que utiliza un array de recursos de países y define el menu desplegable
+
+        spinner = findViewById<Spinner>(R.id.spinnerPais)
         ArrayAdapter.createFromResource(this, R.array.paises, android.R.layout.simple_spinner_item).also { adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
         }
-
         spinner.onItemSelectedListener = this
 
-
-       listener("")
+        // funcion con los listeners
+       listeners("")
     }
 
     @SuppressLint("NewApi")
-    private fun listener(pais: String) {
+    private fun listeners(pais: String) {
 
+        // inicialización de elementos
         val duration = Toast.LENGTH_SHORT
         boton = findViewById<Button>(R.id.button)
         resultado = findViewById<TextView>(R.id.textViewResultado)
@@ -86,10 +89,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         barra = findViewById<SeekBar>(R.id.seekBarNivel)
         textViewNivel = findViewById<TextView>(R.id.textViewNivel)
         suscripcion = findViewById<Switch>(R.id.switch1)
+        // definimos el max y min de la barra que hemos inicializado
         barra.min = 0
         barra.max = 10
 
-
+        // listener para el seekbar
         barra.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -106,6 +110,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         })
 
+        // listener para el boton del boletin
         suscripcion.setOnCheckedChangeListener {_, isChecked ->
             if (isChecked) {
                 suscripcionBoolean = true
@@ -116,6 +121,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
 
+        // listeners para cada uno de los check boxes
         lectura.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 checkBoxHobbieBoolean[0] = true
@@ -146,47 +152,54 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
 
+        // listeners para el botón principal
          boton.setOnClickListener {
             var hobbies  = ""
             val nombreS = nombre.text
             val apellidoS = apellido.text
             val emailS  = email.text
-
-
-
+             // se agrega a una variable usando un switch dependiendo del id que se pulse
             var genero = when (radioGroup.checkedRadioButtonId) {
                 hombre.id -> "Hombre"
                 mujer.id -> "Mujer"
                 otro.id -> "Otro"
                 else -> ""
             }
+
+            // comprobación de elementos vacios o incompletos
              if (pais == "" || genero == "" || emailS.toString() == "" || nombreS.toString() == ""|| apellidoS.toString() == ""){
-                 Toast.makeText(this, "Usa todos los campos ⚠⚠", duration).show() // in Activity
+                 Toast.makeText(this, "Usa todos los campos ⚠⚠", duration).show()
 
              }else if( nombreS.isDigitsOnly() || apellidoS.isDigitsOnly()){
-                 Toast.makeText(this, "No metas numeros 😡😡", duration).show() // in Activity
+                 Toast.makeText(this, "No metas numeros 😡😡", duration).show()
 
              }else if (!isValidEmail(emailS)){
 
                Toast.makeText(this, "Por favor, introduzca bien su email 😡😡",duration ).show()
 
              }else{
-
+                // bucle para añadir los hobbies al String hobbies, esto se puede mejorar ya que siempre añade una "," al final
                  for (i in checkBoxHobbieBoolean.indices){
                      if (checkBoxHobbieBoolean[i]){
-                         hobbies += checkBoxHobbieString[i]
-                         hobbies += ", "
+                         hobbies += checkBoxHobbieString[i] + ", "
                      }
                 }
-                 if (hobbies == ""){
+                 // si hobbies no esta vacio usa dropLast para borrar los 2 ultimos caracteres si no, no hay hobbies.
+                 if (hobbies != "") {
+                     hobbies = hobbies.dropLast(2)
+                 }else{
                      hobbies = "No hay hobbies"
                  }
 
+                 // asigna todo a resultado y envia un toast de confirmación
+
                  resultado.text = "Nombre: $nombreS\nApellido: $apellidoS\nEmail: $emailS\nGenero: $genero\nPais: $pais\nHobbies: $hobbies\nSatisfaccion: $nivelSatifaccion\nSuscripción: $suscripcionString"
+                 Toast.makeText(this, "Resultado enviado con exito 👍✅",duration ).show()
              }
         }
     }
 
+    // metodo para comprobar el email, fuente https://stackoverflow.com/questions/12947620/email-address-validation-in-android-on-edittext
     fun isValidEmail(target: CharSequence?): Boolean {
         return if (TextUtils.isEmpty(target)) {
             false
@@ -194,6 +207,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             Patterns.EMAIL_ADDRESS.matcher(target).matches()
         }
     }
+
+
+    // metodos para que no se borre el resultado enviado cuando se para la actividad o se gira la pantalla
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -205,8 +221,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         resultado.text = savedInstanceState.getString("Resultado")
     }
 
+    // metodo listener del spinner que usa la funcion listener para pasarle el pais
+
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        listener(spinner.selectedItem.toString())
+        listeners(spinner.selectedItem.toString())
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
